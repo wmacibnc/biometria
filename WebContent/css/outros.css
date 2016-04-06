@@ -1,0 +1,58 @@
+.displayTableFrame {
+	overflow-x: hidden;
+	height: 310px;
+	width: 100%;
+}
+
+.dataTable th {
+	padding: 1px 2px 1px 2px !important;
+	text-align: left;
+	border-spacing: 0px;
+}
+
+.dataTable td {
+	padding: 1px 2px 1px 2px !important;
+}
+
+.dataTable thead tr {
+	position: relative;
+	height: 10px;
+}
+
+.dataTable tbody {
+	overflow-x: hidden;
+}
+
+.dataTable tbody tr {
+	width: inherit;
+	height: auto;
+	white-space: nowrap;
+	height: auto;
+}
+
+.dataTable tbody tr.odd {
+	/*background-color: #eee*/
+}
+
+.dataTable tbody tr.tableRowEven, tr.even {
+	/*background-color: #ddd*/
+}
+
+.dataTable tbody tr td:last-child {
+	padding-right: 1px;
+}
+
+.dataTable tbody td {
+	padding: 1px 2px 1px 2px !important;
+	vertical-align: middle !important;
+}
+
+.dataTable .order1 {
+	background-position: right 50%;
+	background-repeat: no-repeat
+}
+
+.dataTable .order2 {
+	background-position: right 50%;
+	background-repeat: no-repeat
+}

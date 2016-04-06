@@ -1,0 +1,306 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+<title>Clínica Reviv - Sistema 1.25</title>
+
+<link href="<c:url value="/goodbuy.css"/>" rel="stylesheet" type="text/css" media="screen" />
+<link rel="shortcut icon" href="<c:url value="/favicon.ico"/>" type="image/x-icon" />
+<link href="<c:url value="/css/jquery.autocomplete.css"/>" rel="stylesheet" type="text/css" media="screen" />
+<link href="<c:url value="/css/jquery-ui.css"  />" rel="stylesheet" />
+<script type="text/javascript" src="<c:url value="/javascripts/jquery-1.12.0.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/javascripts/jquery.validate.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/javascripts/jquery-ui.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/javascripts/jquery.puts.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/javascripts/jquery.maskedinput.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/javascripts/jquery.maskmoney.min.js"/>"></script>
+	
+<link href="<c:url value="/css/bootstrap.min.css"  />" rel="stylesheet" />
+<link href="<c:url value="/css/bootstrap-responsive.min.css"  />" rel="stylesheet" />
+<link href="<c:url value="/css/bootstrap-theme.min.css"  />" rel="stylesheet" />
+
+<!--[if IE]>
+            <script src="<c:url value='/javascript/bootstrap.min.ie.js' />"></script>
+        <![endif]-->
+<!--[if !IE]><!-->
+
+<script type="text/javascript"
+	src="<c:url value="/javascripts/bootstrap.min.js"/>"></script>
+<!--<![endif]-->
+
+<!-- <link href="<c:url value="/css/IE.css"  />" rel="stylesheet"/>-->
+<link href="<c:url value="/css/outros.css"  />" rel="stylesheet" />
+<fmt:setLocale value="pt_br" />
+</head>
+
+<body>
+
+	<script>
+		$(document).ready(function() {
+			$("#conteudo").load(function() {
+				alert("Image loaded.");
+			});
+		});
+	</script>
+
+	<script>
+	
+	
+		window.onload = function() {
+			document.getElementById('conteudo').style.display = "block";
+			setTimeout(function() {
+				document.getElementById('carregando').style.display = "none";
+			}, 2000);
+		}
+		
+	</script>
+	<div id="carregando" class="center">
+		<img src="<c:url value="/imagens/carregando.gif"/>"
+			style="z-index: 10000; top: 40%; position: relative;" />
+	</div>
+
+	<div id="conteudo">
+	
+	
+				<c:if test="${!empty usuarioLogado && !empty usuarioLogado.usuario}">
+				 <div class="container">
+            <div class="row">
+               <div id="menu_topo">
+               <table>
+            <tr>
+                <td>
+                <input disabled type="text" id="sessao" style="border:none;background:none;width:42px;font-size:13px;padding-top: 5px;"/>
+                </td>
+                
+                <td>
+                <script type="text/javascript">
+                	function fechar(){
+                		var win = window.open("about:blank", "_self");
+                		win.close();           		
+                	}
+                </script>
+                	<i onclick="fechar()" class="glyphicon glyphicon-remove" style="font-size: 20px !important;"></i>
+                </td>
+            </tr>
+        </table>
+               </div>
+            </div>
+            
+            <script type="text/javascript">
+                var tempo = new Number();
+                // Tempo em segundos
+                //25 Minutos
+                //tempo = 1500;
+                //30 Minutos
+                tempo = 1800;
+
+                function startCountdown(){
+
+                // Se o tempo não for zerado
+                if((tempo - 1) >= 0){
+
+                // Pega a parte inteira dos minutos
+                var min = parseInt(tempo/60);
+                // Calcula os segundos restantes
+                var seg = tempo%60;
+        
+                // Formata o número menor que dez, ex: 08, 07, ...
+                if(min < 10){
+                    min = "0"+min;
+                    min = min.substr(0, 2);
+                }
+                if(seg <=9){
+                    seg = "0"+seg;
+                }
+        
+                // Cria a variável para formatar no estilo hora/cronômetro
+                var horaImprimivel = min + ':' + seg;
+                //JQuery pra setar o valor
+                //$("#sessao").html(horaImprimivel);
+                document.getElementById('sessao').value = horaImprimivel;
+        
+                // Define que a função será executada novamente em 1000ms = 1 segundo
+                setTimeout('startCountdown()',1000);
+        
+                // diminui o tempo
+                tempo--;
+        
+                // Quando o contador chegar a zero faz esta ação
+                } else {
+                    alert("Sua sessão expirou");
+                    window.open('<c:url value="/login/formulario"/>', '_self');
+                }
+        
+            }
+    
+    // Chama a função ao carregar a tela
+    startCountdown();
+    </script>
+    
+      </div>
+      
+				<div class="container">
+					<div class="row">
+						<div id="header col-sm-12" align="center">
+							<img src="<c:url value="/imagens/logo.png"/>" class="logo">
+						</div>
+
+					<!-- todo -->
+					</div>
+					</div>
+					</c:if>
+
+	<br /><br />
+	</div>
+	<script type="text/javascript">
+    function requestFullScreen() {
+
+        var el = document.body;
+
+        // Supports most browsers and their versions.
+        var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+        || el.mozRequestFullScreen || el.msRequestFullScreen;
+
+        if (requestMethod) {
+
+          // Native full screen.
+          requestMethod.call(el);
+
+        } else if (typeof window.ActiveXObject !== "undefined") {
+
+          // Older IE.
+          var wscript = new ActiveXObject("WScript.Shell");
+
+          if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+          }
+        }
+      }
+
+
+	</script>
+	
+	
+	<script>
+
+	$(function() {
+	    $("#calendario").datepicker({
+	        minDate: new Date(1900, 11 - 1, 6),
+	        yearRange: '1900:2050',
+	        changeMonth: true,
+	        changeYear: true,
+	        showOtherMonths: true,
+	        selectOtherMonths: true,
+	        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+	        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+	        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+	        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+	        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+	    });
+	});
+	
+$(function() {
+    $("#calendario1").datepicker({
+    	minDate: new Date(1900, 11 - 1, 6),
+        yearRange: '1900:2050',
+        changeMonth: true,
+        changeYear: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+    });
+});
+
+$(function() {
+    $("#calendario2").datepicker({
+        minDate: new Date(1900, 11 - 1, 6),
+        yearRange: '1900:2050',
+        changeMonth: true,
+        changeYear: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+    });
+});
+
+$(function() {
+    $("#calendario3").datepicker({
+        minDate: new Date(1900, 11 - 1, 6),
+        yearRange: '1900:2050',
+        changeMonth: true,
+        changeYear: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+    });
+});
+
+$(function() {
+    $("#calendario4").datepicker({
+        minDate: new Date(1900, 11 - 1, 6),
+        yearRange: '1900:2050',
+        changeMonth: true,
+        changeYear: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+    });
+});
+
+$(function() {
+    $("#calendario5").datepicker({
+        minDate: new Date(1900, 11 - 1, 6),
+        yearRange: '1900:2050',
+        changeMonth: true,
+        changeYear: true,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+    });
+});
+
+
+jQuery.extend(jQuery.validator.messages, {
+    required: "Preenchimento obrigatório.",
+    remote: "Por favor, corrija este campo.",
+    email: "Por favor, forne&ccedil;a um endere&ccedil;o eletr&ocirc;nico v&aacute;lido.",
+    url: "Por favor, forne&ccedil;a uma URL v&aacute;lida.",
+    date: "Por favor, forne&ccedil;a uma data v&aacute;lida.",
+    dateISO: "Por favor, forne&ccedil;a uma data v&aacute;lida (ISO).",
+    number: "Por favor, forne&ccedil;a um n&uacute;mero v&aacute;lido.",
+    digits: "Por favor, forne&ccedil;a somente d&iacute;gitos.",
+    creditcard: "Por favor, forne&ccedil;a um cart&atilde;o de cr&eacute;dito v&aacute;lido.",
+    equalTo: "Por favor, forne&ccedil;a o mesmo valor novamente.",
+    accept: "Por favor, forne&ccedil;a um valor com uma extens&atilde;o v&aacute;lida.",
+    maxlength: jQuery.validator.format("Por favor, forne&ccedil;a n&atilde;o mais que {0} caracteres."),
+    minlength: jQuery.validator.format("Por favor, forne&ccedil;a ao menos {0} caracteres."),
+    rangelength: jQuery.validator.format("Por favor, forne&ccedil;a um valor entre {0} e {1} caracteres de comprimento."),
+    range: jQuery.validator.format("Por favor, forne&ccedil;a um valor entre {0} e {1}."),
+    max: jQuery.validator.format("Por favor, forne&ccedil;a um valor menor ou igual a {0}."),
+    min: jQuery.validator.format("Por favor, forne&ccedil;a um valor maior ou igual a {0}.")
+});
+</script>

@@ -1,0 +1,40 @@
+*{margin:0px; padding:0px; }
+#header {background-color:#FFF; margin-top: 1%;}
+.margin-left{margin-left: 4%}
+#logoff{margin-bottom: 1%;}
+#rodape{height: 100px;background-color: black;}
+.logo{left:2%;}
+#carregando{ position: fixed; top: 0; left: 0;z-index:10000;background-color:#666;opacity: 0.3;filter: alpha(opacity=30); width:106%;height:106%;text-align: center;overflow: hidden !important;}	
+#erros {background-color: white;}
+#conteudo{ display:none; position:relative;min-height:100%;margin-top:20px;}
+#footer{position: fixed;bottom: 0%;background-color: #fff;z-index: 1000;width: 100%;text-align: center;padding: 10px;height: 5.5em;}
+.center{ position:absolute;top: 50%;left: 50%; margin-left: -75px; /*centralizando a imagem*/ margin-top: -35px; /*centralizando a imagem*/}
+#logo{margin-top:2%;color:black;font-weight:bold;float:left;height:200px;width: 20%}
+.col10{width:100%;}
+.right{float:right}
+.btn-inicial{height:80px !important;width: 50% !important;}
+.panel{margin-bottom: 10px !important;}
+.table{margin-top: 8px !important;}
+.btn-footer{height:44px !important;width: 150px !important;}
+.campo-senha-inicial{width: 50% !important;}
+.btn-acao{margin-left: -15px !important; width: 140px !important;}
+.btn-filtrar{width: 100px !important;}
+.title-pager{font-weight: bold;}
+.user{right: 0 !important;float: right !important;width:104%;}
+#linha{width: 100%; height:43px;}
+#linha2{width: 100%; height:39px;}
+#linha3{width: 100%; height:15px;}
+#linha4{width: 100%;height: 63px;}
+.btn-espaco{padding-left: 10px;}
+.btn-tratamento{margin-left: 0% !important;margin-top: 5px;margin-bottom: 5px !important;}
+#menu_topo{float: right;}
+/* Layout para celulares: menor ou igual a 480 px. */
+body {background-color:blue; }
+  
+/* Layout para tablets: 481 px a 768 px. Herda estilos de: Layout para celulares. */  
+@media only screen and (min-width: 481px) {body {background-color: black; } }
+   
+/* Layout para desktops: 769 px at� o m�ximo de 1232 px. Herda estilos de: Layout para celulares e Layout para tablets. */    
+@media only screen and (min-width: 769px) {body {background-color: red;}}  
+
+label.error { float: none; color: red; margin: 0 .5em 0 0; vertical-align: top; font-size: 10px }
